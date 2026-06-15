@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 30% 96%;
+    --foreground: 210 35% 22%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 35% 22%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 35% 22%;
+    --primary: 204 48% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180 38% 39%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 30% 94%;
+    --muted-foreground: 210 25% 40%;
+    --accent: 210 30% 94%;
+    --accent-foreground: 210 35% 22%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 25% 88%;
+    --input: 210 25% 88%;
+    --ring: 204 48% 53%;
+    --radius: 0.625rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    @apply bg-sky-pale text-deep-blue font-body antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Playfair Display", serif;
+    font-weight: 400;
+  }
+
+  .font-body {
+    font-family: Inter, system-ui, sans-serif;
+  }
+
+  .gradient-hero {
+    background: linear-gradient(180deg, #B8CFE0 0%, #D8E6F0 40%, #E8F0F6 100%);
+  }
+
+  .gradient-cta {
+    background: linear-gradient(135deg, #4A90C2 0%, #3D8B8B 100%);
+  }
+
+  .gradient-cta-hover {
+    background: linear-gradient(135deg, #6BA5D0 0%, #5BA8A8 100%);
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}

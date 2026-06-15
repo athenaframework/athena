@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Environment variables (NEVER commit)
+.env
+.env.local
+.env.*.local
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.claude/
+
+# Logs
+logs/
+*.log
+
+# Generated / temporary
+output/
+*.bak-*
+kairos/skills/skill-*.yaml
+kairos/memory.db
+kairos/chroma_db/
+*.db
+kairos/soul.md
+kairos/skills/architecture_latest.md
+
+# Node / Dashboard / Landing
+node_modules/
+dashboard/dist/
+landing/dist/
+
+# OS
+.DS_Store
+Thumbs.db
