@@ -3,7 +3,20 @@ import { useScrollReveal } from '@/hooks/useScrollReveal';
 import SectionHeader from '@/components/SectionHeader';
 import { ExternalLink, Maximize2, RefreshCcw } from 'lucide-react';
 
-const DEMO_URL = (import.meta.env.VITE_DEMO_URL as string) || 'https://athena-production-9044.up.railway.app/app';
+const getDemoUrl = () => {
+  let url = (import.meta.env.VITE_DEMO_URL as string) || 'https://athena-production-9044.up.railway.app/app';
+  if (url.startsWith('http://') && !url.includes('localhost') && !url.includes('127.0.0.1')) {
+    url = url.replace('http://', 'https://');
+  }
+  if (!url.includes('localhost') && !url.includes('127.0.0.1')) {
+    if (!url.endsWith('/app') && !url.endsWith('/app/')) {
+      url = url.replace(/\/$/, '') + '/app';
+    }
+  }
+  return url;
+};
+
+const DEMO_URL = getDemoUrl();
 
 export default function DemoSection() {
   const headerRef = useScrollReveal<HTMLDivElement>({
