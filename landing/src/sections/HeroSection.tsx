@@ -80,7 +80,7 @@ export default function HeroSection() {
   }, []);
 
   const handleCopyCA = () => {
-    navigator.clipboard.writeText('TBA — Athena token launching on Base');
+    navigator.clipboard.writeText('0xdAd76f49Ec95AbCa73349a21EeC34b9df3Af1961 — Athena token launching on Base');
   };
 
   return (
@@ -167,7 +167,7 @@ export default function HeroSection() {
           </div>
           <div className="inline-flex items-center gap-2 bg-white border border-deep-blue/15 rounded-full px-4 py-2">
             <span className="font-body text-xs text-deep-blue/50 uppercase tracking-wide">CA</span>
-            <span className="font-body text-sm text-deep-blue">TBA</span>
+            <span className="font-body text-sm text-deep-blue">0xdAd76f49Ec95AbCa73349a21EeC34b9df3Af1961</span>
             <button
               onClick={handleCopyCA}
               className="p-1 hover:bg-deep-blue/5 rounded transition-colors"
