@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { AgentData, DashboardState } from '../types';
 
-const WS_URL = import.meta.env.VITE_WS_URL || 'ws://localhost:8001/ws/dashboard';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8001';
+const WS_URL = import.meta.env.VITE_WS_URL ||
+  (API_URL.replace('https://', 'wss://').replace('http://', 'ws://') + '/ws/dashboard');
 
 export interface DashboardEvent {
   type: 'agent_update' | 'log_update' | 'metrics_update' | 'particle_effect' | 'new_goal';
@@ -16,7 +17,7 @@ export const useDashboard = () => {
     active_task: 'Awaiting commands...',
     tasks_completed: 0,
     skills_created: 0,
-    ATHENA_heartbeat: new Date().toISOString(),
+    kairos_heartbeat: new Date().toISOString(),
     token_usage: 0,
     logs: [],
   });
@@ -33,7 +34,7 @@ export const useDashboard = () => {
         const ws = new WebSocket(WS_URL);
 
         ws.onopen = () => {
-          console.log('✅ Connected to dashboard WebSocket');
+          console.log('✅ Connected to Athena WebSocket');
           setConnected(true);
           // Request current state
           fetch(`${API_URL}/api/status`)
@@ -47,7 +48,6 @@ export const useDashboard = () => {
             const data = JSON.parse(event.data);
             setLastEvent(data);
 
-            // Update state based on event type
             setState((prev) => {
               if (data.type === 'agent_update' && data.full_state) {
                 return data.full_state;
@@ -61,10 +61,10 @@ export const useDashboard = () => {
                 );
                 return { ...prev, agents: updatedAgents };
               }
-                if ((data.type === 'new_goal' || data.type === 'metrics_update' || data.type === 'timer_tick' || data.type === 'task_complete' || data.type === 'task_error') && data.full_state) {
-                  return data.full_state;
-                }
-                return prev;
+              if ((data.type === 'new_goal' || data.type === 'metrics_update' || data.type === 'timer_tick' || data.type === 'task_complete' || data.type === 'task_error') && data.full_state) {
+                return data.full_state;
+              }
+              return prev;
             });
           } catch (err) {
             console.error('Failed to parse WebSocket message:', err);
@@ -77,9 +77,8 @@ export const useDashboard = () => {
         };
 
         ws.onclose = () => {
-          console.log('❌ Disconnected from dashboard WebSocket');
+          console.log('❌ Disconnected from Athena WebSocket');
           setConnected(false);
-          // Attempt reconnect after 3 seconds
           reconnectTimeoutRef.current = setTimeout(connect, 3000);
         };
 
