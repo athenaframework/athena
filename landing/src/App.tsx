@@ -32,21 +32,7 @@ export default function App() {
   }, []);
 
   if (!PRIVY_APP_ID) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-sky-pale p-8 text-center">
-        <div className="max-w-md">
-          <h1 className="font-display text-2xl text-deep-blue mb-3">Privy App ID missing</h1>
-          <p className="font-body text-sm text-deep-blue/60">
-            Set <code className="bg-white px-1.5 py-0.5 rounded">VITE_PRIVY_APP_ID</code> in your{' '}
-            <code className="bg-white px-1.5 py-0.5 rounded">.env</code> file. Get one at{' '}
-            <a className="text-ocean underline" href="https://dashboard.privy.io" target="_blank" rel="noreferrer">
-              dashboard.privy.io
-            </a>
-            .
-          </p>
-        </div>
-      </div>
-    );
+    return <Home />;
   }
 
   return (
