@@ -26,7 +26,7 @@ export default function DemoSection() {
           <SectionHeader
             label="LIVE DEMO"
             title="See the swarm in action"
-            subtitle="Real-time 3D command center streaming live agent status, task progress, and built artifacts — directly from a running swarm."
+            subtitle="Real-time 3D command center streaming live agent status, task progress, and built artifacts - directly from a running swarm."
           />
         </div>
 
@@ -89,9 +89,8 @@ export default function DemoSection() {
               Open dashboard
             </a>
             <p className="font-body text-xs text-deep-blue/50 text-center sm:text-left max-w-md">
-              Embedded demo runs on{' '}
-              <code className="font-mono text-deep-blue/70">{DEMO_URL}</code>. Local dev requires
-              the Athena dashboard server to be running.
+              Live 3D dashboard running on{' '}
+              <code className="font-mono text-deep-blue/70">{DEMO_URL}</code>.
             </p>
           </div>
         </div>

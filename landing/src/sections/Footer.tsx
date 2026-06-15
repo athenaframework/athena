@@ -34,12 +34,7 @@ export default function Footer() {
           {/* Logo + Tagline */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <a href="#" className="flex items-center gap-2">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10" cy="10" r="2" fill="white" />
-                <ellipse cx="10" cy="10" rx="8" ry="3" stroke="white" strokeWidth="1" transform="rotate(0 10 10)" />
-                <ellipse cx="10" cy="10" rx="8" ry="3" stroke="white" strokeWidth="1" transform="rotate(60 10 10)" />
-                <ellipse cx="10" cy="10" rx="8" ry="3" stroke="white" strokeWidth="1" transform="rotate(120 10 10)" />
-              </svg>
+              <img src="/logo.png" alt="Athena" className="h-7 w-7 object-contain" />
               <span className="font-display text-base text-white tracking-wide">
                 Athena
               </span>

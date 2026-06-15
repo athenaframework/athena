@@ -11,7 +11,7 @@ const navLinks = [
 
 const externalLinks = {
   twitter: 'https://x.com/Use_Athena',
-  github: 'https://github.com/Use-Athena',
+  github: 'https://github.com/athenaframework/athena',
 };
 
 // X / Twitter logo SVG (since lucide's Twitter is the old bird)
@@ -48,21 +48,15 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300 ${
-          isScrolled
+        className={`fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300 ${isScrolled
             ? 'bg-sky-pale/85 backdrop-blur-xl border-b border-deep-blue/10'
             : 'bg-transparent border-b border-transparent'
-        }`}
+          }`}
       >
         <div className="max-w-[1200px] mx-auto h-full px-6 flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="10" cy="10" r="2" fill="#4A90C2" />
-              <ellipse cx="10" cy="10" rx="8" ry="3" stroke="#4A90C2" strokeWidth="1" transform="rotate(0 10 10)" />
-              <ellipse cx="10" cy="10" rx="8" ry="3" stroke="#4A90C2" strokeWidth="1" transform="rotate(60 10 10)" />
-              <ellipse cx="10" cy="10" rx="8" ry="3" stroke="#4A90C2" strokeWidth="1" transform="rotate(120 10 10)" />
-            </svg>
+            <img src="/logo.png" alt="Athena" className="h-8 w-8 object-contain" />
             <span className="font-display text-base text-deep-blue tracking-wide">
               ATHENA
             </span>
@@ -122,19 +116,13 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-[60] bg-sky-light transition-opacity duration-300 md:hidden ${
-          isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
+        className={`fixed inset-0 z-[60] bg-sky-light transition-opacity duration-300 md:hidden ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
       >
         <div className="flex flex-col h-full p-6">
           <div className="flex items-center justify-between mb-12">
             <a href="#" className="flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="10" cy="10" r="2" fill="#4A90C2" />
-                <ellipse cx="10" cy="10" rx="8" ry="3" stroke="#4A90C2" strokeWidth="1" transform="rotate(0 10 10)" />
-                <ellipse cx="10" cy="10" rx="8" ry="3" stroke="#4A90C2" strokeWidth="1" transform="rotate(60 10 10)" />
-                <ellipse cx="10" cy="10" rx="8" ry="3" stroke="#4A90C2" strokeWidth="1" transform="rotate(120 10 10)" />
-              </svg>
+              <img src="/logo.png" alt="Athena" className="h-8 w-8 object-contain" />
               <span className="font-display text-base text-deep-blue">ATHENA</span>
             </a>
             <button
