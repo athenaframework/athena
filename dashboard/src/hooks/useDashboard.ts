@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { AgentData, DashboardState } from '../types';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8001';
+const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+const API_URL = import.meta.env.VITE_API_URL || (isLocal ? 'http://localhost:8001' : window.location.origin);
 const WS_URL = import.meta.env.VITE_WS_URL ||
   (API_URL.replace('https://', 'wss://').replace('http://', 'ws://') + '/ws/dashboard');
 
