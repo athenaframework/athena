@@ -43,7 +43,6 @@ export const ControlTower: React.FC<ControlTowerProps> = ({ pulseIntensity = 1 }
         <meshBasicMaterial
           color="#2B4A6E"
           wireframe={true}
-          linewidth={2}
           transparent
           opacity={0.45}
         />

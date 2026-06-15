@@ -78,7 +78,6 @@ export const Scene3D: React.FC<Scene3DProps> = ({ agents }) => {
 
       <OrbitControls
         ref={controlsRef}
-        args={[cameraRef.current as THREE.PerspectiveCamera]}
         autoRotate={!focusedAgent}
         autoRotateSpeed={0.35}
         enableDamping

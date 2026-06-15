@@ -17,7 +17,7 @@ export const useDashboard = () => {
     active_task: 'Awaiting commands...',
     tasks_completed: 0,
     skills_created: 0,
-    kairos_heartbeat: new Date().toISOString(),
+    ATHENA_heartbeat: new Date().toISOString(),
     token_usage: 0,
     logs: [],
   });

@@ -82,7 +82,6 @@ export const ParticleSystem: React.FC<ParticleSystemProps> = ({
           size={size}
           sizeAttenuation={true}
           color={color}
-          sizeDecay={1}
           transparent
           opacity={0.8}
           depthWrite={false}
