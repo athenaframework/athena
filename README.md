@@ -7,7 +7,7 @@
 
 
 $Athena 
-CA - 0x000000000000000
+CA - 0xdAd76f49Ec95AbCa73349a21EeC34b9df3Af1961
 
 
 **Local-first, self-hosted, autonomous multi-agent coding swarm.**
