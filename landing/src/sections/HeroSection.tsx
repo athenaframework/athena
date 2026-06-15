@@ -162,7 +162,7 @@ export default function HeroSection() {
         <div ref={tokenRef} className="flex flex-wrap items-center justify-center gap-3">
           <div className="inline-flex items-center gap-2 bg-white border border-deep-blue/15 rounded-full px-4 py-2">
             <span className="font-body text-xs text-deep-blue/50 uppercase tracking-wide">Chain</span>
-            <span className="font-body font-semibold text-sm text-deep-blue">Base L2</span>
+            <span className="font-body font-semibold text-sm text-deep-blue">BASE</span>
             <span className="w-1.5 h-1.5 rounded-full bg-ocean" />
           </div>
           <div className="inline-flex items-center gap-2 bg-white border border-deep-blue/15 rounded-full px-4 py-2">

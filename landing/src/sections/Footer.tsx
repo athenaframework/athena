@@ -8,7 +8,7 @@ const inPageLinks = [
 
 const externalLinks = {
   twitter: 'https://x.com/Use_Athena',
-  github: 'https://github.com/Use-Athena',
+  github: 'https://github.com/athenaframework/athena',
 };
 
 const XIcon = ({ className = '' }: { className?: string }) => (
@@ -91,7 +91,7 @@ export default function Footer() {
         {/* Row 2 */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-2">
           <p className="font-body text-sm text-white/40">
-            &copy; 2026 Athena. Built on Base.
+            &copy; 2026 Athena. Built on BASE.
           </p>
           <p className="font-body text-sm text-white/40">
             Multi-agent intelligence platform
