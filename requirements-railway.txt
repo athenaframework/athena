@@ -1,0 +1,16 @@
+# Railway deployment — dashboard API only (lightweight)
+# Heavy packages (chromadb, sentence-transformers, ollama) are excluded
+# because Railway builds crash trying to compile them
+
+openai>=1.30.0
+gitpython>=3.1.0
+pyyaml>=6.0
+pydantic>=2.0
+duckduckgo-search>=6.0
+fastapi[standard]>=0.115.0
+uvicorn[standard]>=0.30.0
+rich>=13.0
+tenacity>=8.0
+python-dotenv>=1.0
+python-multipart>=0.0.9
+websockets>=12.0
