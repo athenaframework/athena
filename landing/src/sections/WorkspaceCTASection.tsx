@@ -75,7 +75,7 @@ export default function WorkspaceCTASection() {
             </h2>
 
             <p className="font-body text-base md:text-lg text-white/80 leading-relaxed max-w-[560px] mx-auto mb-8">
-              Connect your wallet on Base to access the full Athena workspace — a three-panel AI operating environment with persistent memory, skills, and treasury rewards.
+              Connect your wallet on Base to access the full Athena workspace - a three-panel AI operating environment with persistent memory, skills, and treasury rewards.
             </p>
 
             {/* Prompt Tags */}

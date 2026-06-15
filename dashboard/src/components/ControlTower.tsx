@@ -27,7 +27,7 @@ export const ControlTower: React.FC<ControlTowerProps> = ({ pulseIntensity = 1 }
 
   return (
     <group ref={groupRef} position={[0, 0, 0]}>
-      {/* Inner glowing core — ocean blue */}
+      {/* Inner glowing core - ocean blue */}
       <Sphere ref={sphereRef} args={[1.2, 32, 32]} position={[0, 0, 0]}>
         <meshStandardMaterial
           emissive="#4A90C2"
@@ -38,7 +38,7 @@ export const ControlTower: React.FC<ControlTowerProps> = ({ pulseIntensity = 1 }
         />
       </Sphere>
 
-      {/* Outer wireframe shell — deep blue */}
+      {/* Outer wireframe shell - deep blue */}
       <Icosahedron args={[1.4, 4]} position={[0, 0, 0]}>
         <meshBasicMaterial
           color="#2B4A6E"
@@ -48,7 +48,7 @@ export const ControlTower: React.FC<ControlTowerProps> = ({ pulseIntensity = 1 }
         />
       </Icosahedron>
 
-      {/* Rotating rings — ocean / teal / gold */}
+      {/* Rotating rings - ocean / teal / gold */}
       {[0, 45, 90].map((rotation, i) => (
         <group
           key={i}
@@ -70,7 +70,7 @@ export const ControlTower: React.FC<ControlTowerProps> = ({ pulseIntensity = 1 }
         </group>
       ))}
 
-      {/* Pulsing outer glow — soft sky */}
+      {/* Pulsing outer glow - soft sky */}
       <Sphere args={[1.6, 32, 32]} position={[0, 0, 0]}>
         <meshBasicMaterial
           color="#7BA3C4"

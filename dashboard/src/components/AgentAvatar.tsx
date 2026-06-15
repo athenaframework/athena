@@ -68,7 +68,7 @@ export const AgentAvatar: React.FC<AgentAvatarProps> = ({
         />
       </Sphere>
 
-      {/* Core orb — main agent identity */}
+      {/* Core orb - main agent identity */}
       <Sphere ref={coreRef} args={[0.42, 32, 32]}>
         <meshStandardMaterial
           color={agent.color}
@@ -104,7 +104,7 @@ export const AgentAvatar: React.FC<AgentAvatarProps> = ({
         </mesh>
       )}
 
-      {/* Progress arc — visible when working */}
+      {/* Progress arc - visible when working */}
       {agent.progress > 0 && agent.progress < 100 && (
         <mesh position={[0, -0.85, 0]} rotation={[-Math.PI / 2, 0, 0]}>
           <ringGeometry args={[0.55, 0.62, 32, 1, 0, (agent.progress / 100) * Math.PI * 2]} />

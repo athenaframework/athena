@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
  * RewardDistributor (oracle-driven): owner (multisig) submits daily report specifying
  * whether there are qualifying PRs and the developer recipients and amounts. The contract
  * then distributes reward tokens to developers and top holders (addresses list must be provided).
- * This is a simple scaffold — in production use, tighten access control and consider gas costs.
+ * This is a simple scaffold - in production use, tighten access control and consider gas costs.
  */
 contract RewardDistributor is Ownable {
     HerToken public token;

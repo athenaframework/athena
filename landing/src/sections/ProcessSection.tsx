@@ -16,7 +16,7 @@ const steps = [
     category: 'DESIGN',
     title: 'Nexus Architects',
     description:
-      'Nexus analyzes the goal and produces a complete system design — technology selection, component structure, and agent workflow.',
+      'Nexus analyzes the goal and produces a complete system design - technology selection, component structure, and agent workflow.',
   },
   {
     step: '03',

@@ -16,7 +16,7 @@ const capabilities = [
     category: 'LANGUAGE',
     title: 'Any Language, Any Stack',
     description:
-      'Python, TypeScript, Rust, Go — Athena agents adapt to your stack and follow your project conventions automatically.',
+      'Python, TypeScript, Rust, Go - Athena agents adapt to your stack and follow your project conventions automatically.',
   },
   {
     icon: Radio,
@@ -30,21 +30,21 @@ const capabilities = [
     category: 'MODEL',
     title: 'OpenRouter Powered',
     description:
-      'Use any LLM on OpenRouter — GPT-4o, Claude, Gemini, Mistral, Llama. Assign models per-agent for cost efficiency.',
+      'Use any LLM on OpenRouter - GPT-4o, Claude, Gemini, Mistral, Llama. Assign models per-agent for cost efficiency.',
   },
   {
     icon: Brain,
     category: 'MEMORY',
     title: 'Context-Aware Memory',
     description:
-      'Agents maintain shared working memory across the full task. No context loss, no repeated work — coherent, cumulative progress.',
+      'Agents maintain shared working memory across the full task. No context loss, no repeated work - coherent, cumulative progress.',
   },
   {
     icon: FileCheck,
     category: 'OUTPUT',
     title: 'Structured Output',
     description:
-      'All agents produce structured, validated output — files, diffs, test results, or JSON — that integrates directly into your workflow.',
+      'All agents produce structured, validated output - files, diffs, test results, or JSON - that integrates directly into your workflow.',
   },
 ];
 

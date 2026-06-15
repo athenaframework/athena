@@ -151,7 +151,7 @@ def cmd_llm(args):
     console.print("\n[bold]Interactive Model + Provider Setup[/bold]")
     prov_list = list(KNOWN_PROVIDERS.keys())
     for i, p in enumerate(prov_list, 1):
-        console.print(f"  [cyan]{i}[/cyan]. {p} — {KNOWN_PROVIDERS[p]['description']}")
+        console.print(f"  [cyan]{i}[/cyan]. {p} - {KNOWN_PROVIDERS[p]['description']}")
     sel = Prompt.ask("Choose provider (number or name)", default="1")
     if sel.isdigit():
         idx = int(sel) - 1
@@ -189,7 +189,7 @@ def cmd_llm(args):
 
     save_key = key if key and requires_key and Confirm.ask("Save this key into config.yaml? (recommended only for local use)", default=False) else None
     if manager.set_active_model(provider, selected, save_key):
-        console.print(Panel.fit(f"[bold green]Model selection complete![/bold green]\n\nProvider: [cyan]{provider}[/cyan]\nDefault model: [magenta]{selected}[/magenta]\n\nRun your commands — it will now use the new model automatically.", title="✅ Ready", border_style="green"))
+        console.print(Panel.fit(f"[bold green]Model selection complete![/bold green]\n\nProvider: [cyan]{provider}[/cyan]\nDefault model: [magenta]{selected}[/magenta]\n\nRun your commands - it will now use the new model automatically.", title="✅ Ready", border_style="green"))
     else:
         console.print("[red]Could not save selection[/red]")
 

@@ -42,7 +42,7 @@ export const HolographicPanel: React.FC<HolographicPanelProps> = ({
 
   return (
     <group ref={groupRef} position={position} rotation={rotation}>
-      {/* Panel background — soft white frosted */}
+      {/* Panel background - soft white frosted */}
       <Box args={[width, height, 0.1]}>
         <meshStandardMaterial
           color="#F0F5FA"

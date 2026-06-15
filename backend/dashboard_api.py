@@ -101,7 +101,7 @@ app = FastAPI(title="ATHENA - AI Operating System", version="1.0")
 async def root():
     return {"message": "ATHENA Backend is running. Visit /docs for API documentation."}
 
-# CORS — dev + Railway + Vercel production
+# CORS - dev + Railway + Vercel production
 ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
@@ -130,7 +130,7 @@ if DASHBOARD_BUILD.exists():
     logger.info(f"Serving dashboard static files from: {DASHBOARD_BUILD}")
     app.mount("/app", StaticFiles(directory=str(DASHBOARD_BUILD), html=True), name="dashboard")
 else:
-    logger.warning(f"Dashboard build not found at {DASHBOARD_BUILD} — run 'cd dashboard && npm run build' first")
+    logger.warning(f"Dashboard build not found at {DASHBOARD_BUILD} - run 'cd dashboard && npm run build' first")
 
 # --- WebSocket Manager ---
 class ConnectionManager:

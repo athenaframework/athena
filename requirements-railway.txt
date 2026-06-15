@@ -1,4 +1,4 @@
-# Railway deployment — dashboard API only (lightweight)
+# Railway deployment - dashboard API only (lightweight)
 # Heavy packages (chromadb, sentence-transformers, ollama) are excluded
 # because Railway builds crash trying to compile them
 

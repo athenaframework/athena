@@ -128,7 +128,7 @@ class TelegramHandler(PlatformHandler):
     async def start_listening(self, on_message):
         """Start python-telegram-bot v21+ polling."""
         if not self.token:
-            logger.warning("No Telegram token — skipping Telegram")
+            logger.warning("No Telegram token - skipping Telegram")
             return
 
         try:
@@ -190,7 +190,7 @@ class DiscordHandler(PlatformHandler):
 
     async def start_listening(self, on_message):
         if not self.token:
-            logger.warning("No Discord token — skipping Discord")
+            logger.warning("No Discord token - skipping Discord")
             return
 
         try:
@@ -218,7 +218,7 @@ class DiscordHandler(PlatformHandler):
                     raw=message,
                 )
                 await on_message(msg)
-                # Do not process discord commands here — our unified parser handles /goal
+                # Do not process discord commands here - our unified parser handles /goal
 
             logger.info("Discord bot starting...")
             await self.bot.start(self.token)
@@ -239,7 +239,7 @@ class WhatsAppHandler(PlatformHandler):
         try:
             import pywhatkit as kit
             # chat_id expected as "+91xxxxxxxxxx"
-            # pywhatkit is sync and opens browser — only for occasional use
+            # pywhatkit is sync and opens browser - only for occasional use
             kit.sendwhatmsg_instantly(chat_id, text[:1000], wait_time=10, tab_close=True)
             logger.info(f"WhatsApp message attempted to {chat_id}")
             return True
@@ -392,7 +392,7 @@ async def run_bot_forever():
         msg_interface.register_handler("whatsapp", wa)
 
     # Register core command handlers (optional, we mostly use the central on_message)
-    # msg_interface.register_command("goal", ...) — we handle inside on_incoming_message for async
+    # msg_interface.register_command("goal", ...) - we handle inside on_incoming_message for async
 
     # Start listeners in parallel
     tasks = []

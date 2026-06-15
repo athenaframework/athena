@@ -80,7 +80,7 @@ export default function HeroSection() {
   }, []);
 
   const handleCopyCA = () => {
-    navigator.clipboard.writeText('0xdAd76f49Ec95AbCa73349a21EeC34b9df3Af1961 — Athena token launching on Base');
+    navigator.clipboard.writeText('0xdAd76f49Ec95AbCa73349a21EeC34b9df3Af1961');
   };
 
   return (
@@ -96,7 +96,7 @@ export default function HeroSection() {
         <div ref={badgeRef} className="inline-flex items-center gap-2 bg-teal/10 border border-teal/25 rounded-full px-4 py-1.5 mb-6">
           <span className="w-2 h-2 rounded-full bg-teal animate-pulse-dot" />
           <span className="font-body font-medium text-xs tracking-wide text-teal">
-            Now available — multi-agent intelligence
+            Now available - multi-agent intelligence
           </span>
         </div>
 
@@ -115,7 +115,7 @@ export default function HeroSection() {
           ref={subtitleRef}
           className="font-body text-base md:text-lg text-deep-blue/50 leading-relaxed max-w-[560px] mx-auto mb-8"
         >
-          Athena orchestrates specialized agents to plan, research, build, and validate complex tasks — end-to-end, without supervision.
+          Athena orchestrates specialized agents to plan, research, build, and validate complex tasks - end-to-end, without supervision.
         </p>
 
         {/* CTA Buttons */}
@@ -167,11 +167,12 @@ export default function HeroSection() {
           </div>
           <div className="inline-flex items-center gap-2 bg-white border border-deep-blue/15 rounded-full px-4 py-2">
             <span className="font-body text-xs text-deep-blue/50 uppercase tracking-wide">CA</span>
-            <span className="font-body text-sm text-deep-blue">0xdAd76f49Ec95AbCa73349a21EeC34b9df3Af1961</span>
+            <span className="font-body text-sm text-deep-blue font-mono">0xdAd7...f1961</span>
             <button
               onClick={handleCopyCA}
               className="p-1 hover:bg-deep-blue/5 rounded transition-colors"
               aria-label="Copy contract address"
+              title="0xdAd76f49Ec95AbCa73349a21EeC34b9df3Af1961"
             >
               <Copy className="w-3.5 h-3.5 text-deep-blue/50" />
             </button>

@@ -1,4 +1,4 @@
-# Token Rewards: Top-20 Holders vs Developers — Mechanic Design
+# Token Rewards: Top-20 Holders vs Developers - Mechanic Design
 
 This document describes a reward system that creates a recurring "race" between the top 20 token holders and active developers who submit quality pull requests (PRs). It contains the rules, distribution formulas, thresholds, and recommended on-chain / hybrid implementation approach.
 
@@ -59,7 +59,7 @@ From that Reward Pool, distribution for the 24-hour cycle follows the race rules
 - When no PRs: every top-20 holder receives: holder_reward = reward_pool * (holder_balance / sum(top20_balances))
 
 ## Ongoing Rewards for Continued Contribution
-- If a developer submits a high-quality PR and continues to contribute (multiple days), you can split rewards between the developer and top holders for a transition window (example: 7 days) — this maintains holder incentives while rewarding ongoing contributors.
+- If a developer submits a high-quality PR and continues to contribute (multiple days), you can split rewards between the developer and top holders for a transition window (example: 7 days) - this maintains holder incentives while rewarding ongoing contributors.
 
 ## Staking Boosts & Vesting
 - Allow developers and/or holders to stake tokens for a reward multiplier. Example: stake for 30 days → 1.15x reward multiplier; 90 days → 1.5x.
@@ -84,10 +84,10 @@ From that Reward Pool, distribution for the 24-hour cycle follows the race rules
   - Pros: cheaper, flexible; faster to iterate.
 
 ## Contracts / Components Needed
-- Token contract (ERC-20) — total supply 1B, minter/burner roles if hybrid minting used.
-- FeeSplitter contract — splits fee fractions (Reward Pool, liquidity, treasury, buyback, marketing) automatically on purchase.
-- RewardDistributor contract — holds/distributes tokens per daily outcome, accepts oracle input.
-- Staking contract — lock tokens for multipliers and track staked balances.
+- Token contract (ERC-20) - total supply 1B, minter/burner roles if hybrid minting used.
+- FeeSplitter contract - splits fee fractions (Reward Pool, liquidity, treasury, buyback, marketing) automatically on purchase.
+- RewardDistributor contract - holds/distributes tokens per daily outcome, accepts oracle input.
+- Staking contract - lock tokens for multipliers and track staked balances.
 - Backend service / oracle: verify PR merges, compute quality scores, submit signed reports to `RewardDistributor` or to multisig.
 
 ## Example Daily Flow (hybrid)
@@ -97,8 +97,8 @@ From that Reward Pool, distribution for the 24-hour cycle follows the race rules
 4. If developers qualify, backend composes distribution and asks multisig to execute transfers; otherwise multisig distributes to top-20 holders.
 
 ## Example Scenarios
-- Scenario A — Good dev day: Reward Pool = 10,000 tokens. One high-quality PR merged with score 100. Developer gets 7,000; top-20 split 3,000.
-- Scenario B — Quiet day: Reward Pool = 5,000 tokens. No PRs merged. Top-20 split 5,000 proportionally.
+- Scenario A - Good dev day: Reward Pool = 10,000 tokens. One high-quality PR merged with score 100. Developer gets 7,000; top-20 split 3,000.
+- Scenario B - Quiet day: Reward Pool = 5,000 tokens. No PRs merged. Top-20 split 5,000 proportionally.
 
 ## Metrics to Track
 - Daily Reward Pool size
@@ -110,7 +110,7 @@ From that Reward Pool, distribution for the 24-hour cycle follows the race rules
 ## README Copy to Add to Project `README.md`
 Include a short summary and link to this file. Suggested paragraph:
 
-"We run a daily on-chain/hybrid reward competition between the top 20 token holders and active contributors. Platform fees form a daily Reward Pool — if qualifying PRs are merged that day, developers earn the lion's share; otherwise the top 20 holders share the pool. Token supply is 1B; thresholds, splits, and vesting rules are configurable and described in README_REWARDS.md. This mechanism aligns long-term holders and builders while rewarding real, verified contributions."
+"We run a daily on-chain/hybrid reward competition between the top 20 token holders and active contributors. Platform fees form a daily Reward Pool - if qualifying PRs are merged that day, developers earn the lion's share; otherwise the top 20 holders share the pool. Token supply is 1B; thresholds, splits, and vesting rules are configurable and described in README_REWARDS.md. This mechanism aligns long-term holders and builders while rewarding real, verified contributions."
 
 ---
 

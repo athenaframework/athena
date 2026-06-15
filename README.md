@@ -94,7 +94,7 @@ athena/
 
 - Python 3.11+
 - Git
-- [Ollama](https://ollama.com) (for local mode) — optional if you only use remote providers
+- [Ollama](https://ollama.com) (for local mode) - optional if you only use remote providers
 
 ### 2. One-Liner Install
 
@@ -158,7 +158,7 @@ python -m core.kairos_daemon
 python -m core.kairos_daemon --once
 ```
 
-Athena will wake up every 15 minutes (configurable), find issues, and propose fixes — always asking for your approval on changes.
+Athena will wake up every 15 minutes (configurable), find issues, and propose fixes - always asking for your approval on changes.
 
 ## 🤖 Multi-Provider LLM Support (Ollama + Remote)
 
@@ -190,11 +190,11 @@ Supported env vars (recommended, never saved to disk):
 - `DEEPSEEK_API_KEY`
 - etc.
 
-All ReAct loops, agent calls, and direct `make_llm_call` now go through the unified manager — zero changes in agents or tools needed.
+All ReAct loops, agent calls, and direct `make_llm_call` now go through the unified manager - zero changes in agents or tools needed.
 
 ## 📱 Multi-Platform Bot Control (Telegram + Discord + WhatsApp + 24/7 Service)
 
-Control your entire Athena swarm from your phone or Discord server — no need to be at the terminal.
+Control your entire Athena swarm from your phone or Discord server - no need to be at the terminal.
 
 ### Quick Start
 
@@ -263,7 +263,7 @@ Control your entire Athena swarm from your phone or Discord server — no need t
 
 All responses, logs, and errors go to `logs/bot.log`.
 
-The core (core/, agents/, hermes/) is **completely untouched** — the bot layer only calls the existing public functions (`run_swarm`, `get_react_loop`, etc.).
+The core (core/, agents/, hermes/) is **completely untouched** - the bot layer only calls the existing public functions (`run_swarm`, `get_react_loop`, etc.).
 
 ## 🎨 3D Holographic Dashboard
 
@@ -308,7 +308,7 @@ All updates appear instantly on the 3D dashboard! Backend: FastAPI + WebSocket. 
 
 ## 🚀 Run Bot + Dashboard Together (One Command)
 
-Want everything running at once? Use the unified launcher — starts FastAPI backend, React dashboard, and bot orchestrator simultaneously.
+Want everything running at once? Use the unified launcher - starts FastAPI backend, React dashboard, and bot orchestrator simultaneously.
 
 **Windows (Batch):**
 ```powershell
@@ -370,8 +370,8 @@ See `.env.example` for all available options.
 ## 🧪 Development Tips
 
 - Edit `config.yaml` freely (hot-reloaded in many places)
-- Add your own tools in `core/tools.py` — they automatically become available to ReAct
-- Skills are just YAML — drop new ones in `hermes/skills/` and the swarm will discover them
+- Add your own tools in `core/tools.py` - they automatically become available to ReAct
+- Skills are just YAML - drop new ones in `hermes/skills/` and the swarm will discover them
 - Run with `PYTHONPATH=.` if importing from outside
 
 ## 📦 Optional / Future
@@ -391,7 +391,7 @@ This is a living local system. The best way to contribute is to:
 
 ## License
 
-MIT — Use freely. Keep it local. Make it better.
+MIT - Use freely. Keep it local. Make it better.
 
 ---
 

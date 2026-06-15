@@ -7,17 +7,17 @@ import { TerminalFeed } from './components/TerminalFeed';
 import { Scene3D } from './components/Scene3D';
 
 const agentDisplayMap: Record<string, { display: string; role: string; color: string }> = {
-  Oracle: { display: 'Oracle',  role: 'STRATEGIC PLANNER',    color: '#C49B5A' },
-  Nexus:  { display: 'Nexus',   role: 'SYSTEM ARCHITECT',     color: '#7B8FC7' },
-  Forge:  { display: 'Forge',   role: 'CODE ENGINEER',        color: '#5B9A5B' },
-  Cipher: { display: 'Cipher',  role: 'TEST ENGINEER',        color: '#5A8AC7' },
-  Aegis:  { display: 'Aegis',   role: 'QUALITY REVIEWER',     color: '#C75A5A' },
+  Oracle: { display: 'Oracle', role: 'STRATEGIC PLANNER', color: '#C49B5A' },
+  Nexus: { display: 'Nexus', role: 'SYSTEM ARCHITECT', color: '#7B8FC7' },
+  Forge: { display: 'Forge', role: 'CODE ENGINEER', color: '#5B9A5B' },
+  Cipher: { display: 'Cipher', role: 'TEST ENGINEER', color: '#5A8AC7' },
+  Aegis: { display: 'Aegis', role: 'QUALITY REVIEWER', color: '#C75A5A' },
   // Legacy fallbacks (in case backend still emits old names mid-restart)
-  Orchestrator: { display: 'Oracle',  role: 'STRATEGIC PLANNER',  color: '#C49B5A' },
-  Architect:    { display: 'Nexus',   role: 'SYSTEM ARCHITECT',   color: '#7B8FC7' },
-  Coder:        { display: 'Forge',   role: 'CODE ENGINEER',      color: '#5B9A5B' },
-  Tester:       { display: 'Cipher',  role: 'TEST ENGINEER',      color: '#5A8AC7' },
-  Scribe:       { display: 'Aegis',   role: 'QUALITY REVIEWER',   color: '#C75A5A' },
+  Orchestrator: { display: 'Oracle', role: 'STRATEGIC PLANNER', color: '#C49B5A' },
+  Architect: { display: 'Nexus', role: 'SYSTEM ARCHITECT', color: '#7B8FC7' },
+  Coder: { display: 'Forge', role: 'CODE ENGINEER', color: '#5B9A5B' },
+  Tester: { display: 'Cipher', role: 'TEST ENGINEER', color: '#5A8AC7' },
+  Scribe: { display: 'Aegis', role: 'QUALITY REVIEWER', color: '#C75A5A' },
 };
 
 const lookupAgent = (name: string) => agentDisplayMap[name] || { display: name, role: 'AGENT', color: '#7BA3C4' };
@@ -119,20 +119,19 @@ export default function ATHENA() {
               <span className="font-body font-medium text-[11px] tracking-wide text-teal">LIVE</span>
             </div>
           </div>
-          <div className={`px-3 py-1 text-[11px] font-mono tracking-[2px] rounded-full border ${
-            connected
+          <div className={`px-3 py-1 text-[11px] font-mono tracking-[2px] rounded-full border ${connected
               ? 'bg-leaf/10 border-leaf/40 text-leaf'
               : 'bg-[#C75A5A]/10 border-[#C75A5A]/40 text-[#C75A5A]'
-          }`}>
+            }`}>
             {connected ? 'CONNECTED' : 'OFFLINE'}
           </div>
         </div>
       </header>
 
-      {/* TOP GRID — 3D Hero (left) + Assistant Chat (right) */}
+      {/* TOP GRID - 3D Hero (left) + Assistant Chat (right) */}
       <div className="px-4 py-4 md:px-6 md:py-6">
         <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[2fr,1fr] gap-4 md:gap-6">
-          {/* 3D SCENE — hero */}
+          {/* 3D SCENE - hero */}
           <div className="glass-card rounded-card overflow-hidden h-[460px] md:h-[560px] athena-canvas-bg relative">
             {/* Top overlay row */}
             <div className="absolute top-3 left-4 right-4 z-10 flex items-start justify-between pointer-events-none">
@@ -190,18 +189,17 @@ export default function ATHENA() {
             <div className="flex-1 min-h-0 overflow-y-auto custom-scroll p-4 space-y-3 text-sm">
               {chatMessages.map((msg) => (
                 <div key={msg.id} className={msg.type === 'user' ? 'text-right' : ''}>
-                  <div className={`inline-block max-w-[88%] px-4 py-2 rounded-2xl text-[13.5px] ${
-                    msg.type === 'user'
+                  <div className={`inline-block max-w-[88%] px-4 py-2 rounded-2xl text-[13.5px] ${msg.type === 'user'
                       ? 'gradient-cta text-white shadow-cta'
                       : 'bg-white/70 border border-deep-blue/10 text-deep-blue'
-                  }`}>
+                    }`}>
                     {msg.text}
                   </div>
                 </div>
               ))}
               {isTyping && <div className="text-deep-blue/50 text-xs">Athena is thinking…</div>}
 
-              {/* Suggested prompts — only show if conversation hasn't really started */}
+              {/* Suggested prompts - only show if conversation hasn't really started */}
               {chatMessages.length <= 1 && !isTyping && (
                 <div className="pt-2 space-y-2">
                   <div className="text-[10px] font-mono tracking-[2px] text-deep-blue/40 uppercase">
@@ -259,7 +257,7 @@ export default function ATHENA() {
         </div>
       </div>
 
-      {/* BOTTOM GRID — Operations / Outputs / Logs */}
+      {/* BOTTOM GRID - Operations / Outputs / Logs */}
       <div className="px-4 py-6 md:px-6">
         <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
           {/* ACTIVE OPERATIONS */}
@@ -277,11 +275,10 @@ export default function ATHENA() {
                 return (
                   <div
                     key={i}
-                    className={`p-3 rounded-lg border text-sm transition-all ${
-                      task.status === 'active'
+                    className={`p-3 rounded-lg border text-sm transition-all ${task.status === 'active'
                         ? 'border-ocean/40 bg-ocean/5'
                         : 'border-deep-blue/10 bg-white/40'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-2 text-deep-blue font-medium">
                       <span className="w-2 h-2 rounded-full" style={{ backgroundColor: agentMeta.color }} />
@@ -330,7 +327,7 @@ export default function ATHENA() {
                       </div>
                     </div>
                     <div className="text-xs text-deep-blue/60 mt-1.5">
-                      {agent.current_task || '—'}
+                      {agent.current_task || '-'}
                     </div>
                     <div className="mt-2 h-1.5 rounded-full bg-deep-blue/8 overflow-hidden">
                       <div className="h-full transition-all duration-500"

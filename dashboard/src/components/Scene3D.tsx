@@ -56,7 +56,7 @@ export const Scene3D: React.FC<Scene3DProps> = ({ agents }) => {
 
   return (
     <>
-      {/* Lighting — soft, ambient + ocean key light */}
+      {/* Lighting - soft, ambient + ocean key light */}
       <ambientLight intensity={0.7} color="#E2EDF5" />
       <directionalLight position={[8, 12, 8]} intensity={1.1} color="#FFFFFF" castShadow />
       <pointLight position={[10, 6, 10]} intensity={0.8} color="#4A90C2" />
@@ -68,7 +68,7 @@ export const Scene3D: React.FC<Scene3DProps> = ({ agents }) => {
       {/* Subtle starfield for depth */}
       <Stars radius={50} depth={30} count={400} factor={2} fade speed={0.5} />
 
-      {/* Cinematic camera — closer, slight tilt */}
+      {/* Cinematic camera - closer, slight tilt */}
       <PerspectiveCamera
         ref={cameraRef}
         makeDefault
@@ -93,7 +93,7 @@ export const Scene3D: React.FC<Scene3DProps> = ({ agents }) => {
       {/* Central Control Tower */}
       <ControlTower pulseIntensity={agents.some((a) => a.status === 'working') ? 2 : 1} />
 
-      {/* Floor — subtle reflective disc */}
+      {/* Floor - subtle reflective disc */}
       <mesh position={[0, -1.6, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <ringGeometry args={[3, 6.5, 64]} />
         <meshBasicMaterial
