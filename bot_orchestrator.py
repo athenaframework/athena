@@ -31,7 +31,7 @@ from dotenv import load_dotenv
 
 # Core ATHENA (never modify these imports or the folders)
 from agents.orchestrator import run_swarm
-from core.ATHENA_daemon import ATHENADaemon
+from core.kairos_daemon import ATHENADaemon
 from core.react_loop import get_react_loop
 from interfaces.messaging import (
     Message, BotCommand, MessagingInterface, messaging as msg_interface,
@@ -288,7 +288,7 @@ async def run_goal_on_core(msg: Message, args: list[str]) -> str:
 def get_status() -> str:
     """Quick status of memory + current LLM + ATHENA."""
     try:
-        from ATHENA.memory import get_memory
+        from hermes.memory import get_memory
         mem = get_memory(project_root=str(ROOT))
         count = mem.get_task_count()
         from core.llm import get_llm_manager

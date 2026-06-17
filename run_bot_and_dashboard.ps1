@@ -1,5 +1,5 @@
 # ============================================================
-# Kairos Bot + Dashboard Unified Launcher (PowerShell)
+# Athena Bot + Dashboard Unified Launcher (PowerShell)
 # ============================================================
 # Usage: .\run_bot_and_dashboard.ps1
 #

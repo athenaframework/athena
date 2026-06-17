@@ -8,23 +8,15 @@ from __future__ import annotations
 
 import logging
 import time
-from dataclasses import dataclass, field
 from typing import Any, Callable, Optional
 
 from core.tools import ATHENATools, get_tools
 from core.react_loop import make_llm_call
 from core.dashboard_events import emit_agent_update, emit_log, emit_metrics
-from ATHENA.memory import HermesMemory, get_memory, TaskRecord
+from hermes.memory import HermesMemory, get_memory, TaskRecord
+from agents import AgentResult
 
 logger = logging.getLogger("agents.orchestrator")
-
-
-@dataclass
-class AgentResult:
-    success: bool
-    output: str
-    artifacts: list[str] = field(default_factory=list)
-    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 class Orchestrator:
@@ -34,7 +26,7 @@ class Orchestrator:
 
     def __init__(
         self,
-        tools: Optional[ClawTools] = None,
+        tools: Optional[ATHENATools] = None,
         memory: Optional[HermesMemory] = None,
         llm_call: Optional[Callable[[str, str], str]] = None,
         project_root: str = ".",

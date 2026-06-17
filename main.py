@@ -27,10 +27,10 @@ ROOT = Path(__file__).parent.resolve()
 sys.path.insert(0, str(ROOT))
 
 from agents.orchestrator import run_swarm
-from core.ATHENA_daemon import ATHENADaemon
+from core.kairos_daemon import ATHENADaemon
 from core.react_loop import ReactLoop, get_react_loop, make_llm_call
 from core.tools import get_tools
-from ATHENA.memory import get_memory
+from hermes.memory import get_memory
 from core.llm import get_llm_manager
 
 console = Console()

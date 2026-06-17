@@ -5,21 +5,13 @@ Architect agent: analyzes goals, produces technical design, identifies files and
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass, field
-from typing import Any, Callable, Optional
+from typing import Callable, Optional
 
 from core.tools import ATHENATools
-from ATHENA.memory import HermesMemory
+from hermes.memory import HermesMemory
+from agents import AgentResult
 
 logger = logging.getLogger("agents.architect")
-
-
-@dataclass
-class AgentResult:
-    success: bool
-    output: str
-    artifacts: list[str] = field(default_factory=list)
-    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 class Architect:
@@ -34,7 +26,7 @@ Keep it concise and actionable."""
 
     def __init__(
         self,
-        tools: ClawTools,
+        tools: ATHENATools,
         memory: HermesMemory,
         llm_call: Optional[Callable[[str, str], str]] = None,
     ):

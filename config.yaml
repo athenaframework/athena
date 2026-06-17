@@ -7,8 +7,8 @@
 # The new 'llm' section takes precedence. Old 'ollama' section kept for backward compat.
 
 llm:
-  provider: "xai"                    # ollama | openai | groq | xai | deepseek | together | fireworks
-  default_model: "grok-build-0.1"
+  provider: "ollama"                 # ollama | openai | groq | xai | deepseek | together | fireworks
+  default_model: "qwen2.5-coder:3b"
   # api_key: "sk-..."              # optional (prefer env vars). Only saved if you explicitly choose in `llm` command
   # base_url: "https://..."        # override for custom endpoints
 
@@ -22,9 +22,9 @@ ollama:
   max_tokens: 8192
 
 memory:
-  sqlite_path: "ATHENA/memory.db"
-  chroma_path: "ATHENA/chroma_db"
-  collection_name: "ATHENA_knowledge"
+  sqlite_path: "hermes/memory.db"
+  chroma_path: "hermes/chroma_db"
+  collection_name: "athena_knowledge"
   max_context_tokens: 12000
 
 ATHENA:
@@ -49,7 +49,7 @@ safety:
 
 logging:
   level: "INFO"
-  file: "ATHENA/ATHENA.log"
+  file: "hermes/hermes.log"
   console: true
 
 skills:
@@ -57,7 +57,7 @@ skills:
   min_success_threshold: 0.8
 
 soul:
-  file: "ATHENA/soul.md"
+  file: "hermes/soul.md"
   auto_update: true
 
 # Multi-platform bot configuration (Telegram + Discord + WhatsApp)

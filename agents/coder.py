@@ -11,7 +11,7 @@ from dataclasses import dataclass, field
 from typing import Any, Callable, Optional
 
 from core.tools import ATHENATools
-from ATHENA.memory import HermesMemory
+from hermes.memory import HermesMemory
 from core.dashboard_events import emit_agent_update, emit_log
 
 logger = logging.getLogger("agents.coder")

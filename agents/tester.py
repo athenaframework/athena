@@ -5,21 +5,13 @@ Tester agent: validates changes, runs tests, reports issues with reproduction st
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass, field
-from typing import Any, Callable, Optional
+from typing import Callable, Optional
 
 from core.tools import ATHENATools
-from ATHENA.memory import HermesMemory, TaskRecord
+from hermes.memory import HermesMemory, TaskRecord
+from agents import AgentResult
 
 logger = logging.getLogger("agents.tester")
-
-
-@dataclass
-class AgentResult:
-    success: bool
-    output: str
-    artifacts: list[str] = field(default_factory=list)
-    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 class Tester:

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, Suspense } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { PerspectiveCamera, OrbitControls, Environment, Text, Stars } from '@react-three/drei';
 import * as THREE from 'three';
@@ -63,7 +63,9 @@ export const Scene3D: React.FC<Scene3DProps> = ({ agents }) => {
       <pointLight position={[-10, 4, -10]} intensity={0.6} color="#3D8B8B" />
       <pointLight position={[0, -5, 0]} intensity={0.4} color="#C49B5A" />
 
-      <Environment preset="dawn" />
+      <Suspense fallback={null}>
+        <Environment preset="dawn" />
+      </Suspense>
 
       {/* Subtle starfield for depth */}
       <Stars radius={50} depth={30} count={400} factor={2} fade speed={0.5} />

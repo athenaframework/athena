@@ -1,0 +1,22 @@
+{
+  "name": "athena-mcp",
+  "version": "1.0.0",
+  "description": "ATHENA autonomous multi-agent coding system — MCP server",
+  "bin": {
+    "athena-mcp": "./bin/athena-mcp.js"
+  },
+  "scripts": {
+    "start": "node bin/athena-mcp.js"
+  },
+  "keywords": [
+    "mcp",
+    "ai",
+    "agent",
+    "coding",
+    "athena"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.61.0"
+  }
+}

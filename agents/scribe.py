@@ -5,22 +5,14 @@ Scribe agent: documents everything, updates soul.md, auto-generates reusable YAM
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Any, Callable, Optional
+from typing import Callable, Optional
 
 from core.tools import ATHENATools
-from ATHENA.memory import HermesMemory
+from hermes.memory import HermesMemory
+from agents import AgentResult
 
 logger = logging.getLogger("agents.scribe")
-
-
-@dataclass
-class AgentResult:
-    success: bool
-    output: str
-    artifacts: list[str] = field(default_factory=list)
-    metadata: dict[str, Any] = field(default_factory=dict)
 
 
 class Scribe:
@@ -29,7 +21,7 @@ class Scribe:
 
     def __init__(
         self,
-        tools: ClawTools,
+        tools: ATHENATools,
         memory: HermesMemory,
         llm_call: Optional[Callable[[str, str], str]] = None,
     ):

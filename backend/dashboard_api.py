@@ -15,23 +15,25 @@ from __future__ import annotations
 import asyncio
 import json
 import logging
-import time
+import random
+import re
 import sys
+import threading
+import time
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Set
 
-import re
+import uvicorn
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
+
 class GoalRequest(BaseModel):
     goal: str
     mode: str = 'task'
-
-import uvicorn
 
 # Add parent to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -94,6 +96,11 @@ current_state: DashboardState = DashboardState(
     task_running=False,
     task_completed=False,
 )
+
+# Lock protecting current_state writes that originate from background threads
+# (e.g. _run_real_swarm runs via asyncio.to_thread — threading.Lock is required,
+# not asyncio.Lock, because the thread has no event loop)
+_state_lock = threading.Lock()
 
 app = FastAPI(title="ATHENA - AI Operating System", version="1.0")
 
@@ -257,12 +264,14 @@ async def trigger_goal(request: GoalRequest):
             result = await asyncio.to_thread(run_swarm, goal, project_root=str(Path(__file__).parent.parent))
 
             duration = time.time() - start_time
-            current_state.time_remaining_seconds = 0
-            current_state.task_running = False
-            current_state.task_completed = True
-            current_state.real_result = result.output
-            current_state.real_artifacts = result.artifacts or []
-            current_state.tasks_completed += 1 if result.success else 0
+            with _state_lock:
+                current_state.time_remaining_seconds = 0
+                current_state.task_running = False
+                current_state.task_completed = True
+                current_state.real_result = result.output
+                current_state.real_artifacts = result.artifacts or []
+                if result.success:
+                    current_state.tasks_completed += 1
 
             # Final real updates
             emit_log(f"✅ REAL TASK COMPLETE in {duration:.1f}s", "success", "Oracle")
@@ -280,8 +289,9 @@ async def trigger_goal(request: GoalRequest):
             })
 
         except Exception as e:
-            current_state.task_running = False
-            current_state.real_result = f"ERROR: {str(e)}"
+            with _state_lock:
+                current_state.task_running = False
+                current_state.real_result = f"ERROR: {str(e)}"
             emit_log(f"❌ Swarm failed: {e}", "error", "Oracle")
             await manager.broadcast({"type": "task_error", "error": str(e), "full_state": current_state.model_dump()})
 
@@ -344,12 +354,14 @@ async def simulate_agent_activity():
             "Aegis": "Auditing code quality and standards"
         }[agent_name]
 
-        for i, a in enumerate(current_state.agents):
+        updated_agent = None
+        for a in current_state.agents:
             if a.name == agent_name:
                 a.status = new_status
                 a.current_task = task
                 a.progress = random.randint(20, 95) if new_status != "completed" else 100
                 a.last_update = datetime.now().isoformat()
+                updated_agent = a
                 break
 
         current_state.logs.append(f"[{datetime.now().strftime('%H:%M:%S')}] {agent_name} → {new_status}")
@@ -358,24 +370,70 @@ async def simulate_agent_activity():
 
         await manager.broadcast({
             "type": "agent_update",
-            "data": current_state.agents[i].model_dump() if 'i' in locals() else {},
+            "data": updated_agent.model_dump() if updated_agent else {},
             "full_state": current_state.model_dump()
         })
+
+# --- Smart broadcaster listener ---
+# Updates current_state in-place then sends full_state so the 3D scene
+# always has consistent data regardless of which process emitted the event.
+async def _broadcaster_listener(event: dict):
+    global current_state
+    ts = datetime.now().strftime('%H:%M:%S')
+    etype = event.get("type", "")
+
+    if etype == "agent_update":
+        agent_data = event.get("agent", {})
+        name = agent_data.get("name", "")
+        for a in current_state.agents:
+            if a.name == name:
+                a.status = agent_data.get("status", a.status)
+                a.current_task = agent_data.get("current_task", a.current_task)
+                a.progress = agent_data.get("progress", a.progress)
+                a.color = agent_data.get("color", a.color)
+                a.last_update = datetime.now().isoformat()
+                break
+        task_snippet = agent_data.get("current_task", "")[:50]
+        if task_snippet:
+            current_state.logs.append(f"[{ts}] {name}: {task_snippet}")
+            current_state.logs = current_state.logs[-14:]
+
+    elif etype == "log_update":
+        msg = event.get("message", "")
+        agent = event.get("agent") or ""
+        prefix = f"[{ts}] [{agent}] " if agent else f"[{ts}] "
+        current_state.logs.append(prefix + msg)
+        current_state.logs = current_state.logs[-14:]
+
+    elif etype == "metrics_update":
+        if "tasks_completed" in event:
+            current_state.tasks_completed = event["tasks_completed"]
+        if "skills_created" in event:
+            current_state.skills_created = event["skills_created"]
+        if "token_usage" in event:
+            current_state.token_usage = event["token_usage"]
+
+    # Always broadcast full_state — frontend's full_state handler covers all cases
+    await manager.broadcast({
+        "type": etype,
+        "full_state": current_state.model_dump(),
+    })
+
 
 # --- Startup ---
 @app.on_event("startup")
 async def startup_event():
     logger.info("🚀 Athena Dashboard API starting...")
-    
-    # Register event broadcaster to push to WebSocket clients
+
     broadcaster = get_broadcaster()
-    broadcaster.register_listener(manager.broadcast)
+    # Store the running event loop so background threads can schedule coroutines
+    broadcaster.set_event_loop(asyncio.get_event_loop())
+    broadcaster.register_listener(_broadcaster_listener)
     broadcaster.enable()
-    
-    # Start the beautiful demo animation loop
+
     asyncio.create_task(simulate_agent_activity())
     logger.info("3D Dashboard WebSocket ready at /ws/dashboard")
-    logger.info("Global event broadcaster registered")
+    logger.info("Global event broadcaster registered (thread-safe)")
 
 # For direct run: python -m backend.dashboard_api
 if __name__ == "__main__":

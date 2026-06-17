@@ -110,20 +110,38 @@ export default function ATHENA() {
   return (
     <div className="min-h-screen w-full flex flex-col font-body text-deep-blue">
       {/* HEADER */}
-      <header className="h-16 flex-shrink-0 border-b border-deep-blue/10 glass z-50">
+      <header className="h-20 flex-shrink-0 border-b border-deep-blue/10 glass z-50">
         <div className="h-full max-w-[1600px] mx-auto px-6 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="font-display text-3xl tracking-[-1px] text-deep-blue">ATHENA</div>
-            <div className="inline-flex items-center gap-2 bg-teal/10 border border-teal/25 rounded-full px-3 py-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-teal animate-pulse-dot" />
-              <span className="font-body font-medium text-[11px] tracking-wide text-teal">LIVE</span>
+          <div className="flex items-end gap-5">
+            <div className="glow-brand">
+              <div className="font-display font-semibold text-[42px] leading-none tracking-[-2px] gradient-text-brand">
+                ATHENA
+              </div>
+              <div className="mt-1.5 text-[10px] font-mono tracking-[4px] text-deep-blue/55 uppercase">
+                Autonomous Swarm · Operating System
+              </div>
+            </div>
+            <div className="inline-flex items-center gap-2 bg-teal/10 border border-teal/30 rounded-full px-3 py-1 mb-1">
+              <span className="relative inline-flex w-2 h-2 items-center justify-center text-teal live-ring">
+                <span className="w-2 h-2 rounded-full bg-teal" />
+              </span>
+              <span className="font-body font-semibold text-[11px] tracking-[2px] text-teal">LIVE</span>
             </div>
           </div>
-          <div className={`px-3 py-1 text-[11px] font-mono tracking-[2px] rounded-full border ${connected
-              ? 'bg-leaf/10 border-leaf/40 text-leaf'
-              : 'bg-[#C75A5A]/10 border-[#C75A5A]/40 text-[#C75A5A]'
-            }`}>
-            {connected ? 'CONNECTED' : 'OFFLINE'}
+          <div className="flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-2 text-[10px] font-mono tracking-[2px] text-deep-blue/45 uppercase">
+              <span>Oracle</span><span className="text-deep-blue/20">·</span>
+              <span>Nexus</span><span className="text-deep-blue/20">·</span>
+              <span>Forge</span><span className="text-deep-blue/20">·</span>
+              <span>Cipher</span><span className="text-deep-blue/20">·</span>
+              <span>Aegis</span>
+            </div>
+            <div className={`px-3 py-1 text-[11px] font-mono tracking-[2px] rounded-full border ${connected
+                ? 'bg-leaf/10 border-leaf/40 text-leaf'
+                : 'bg-[#C75A5A]/10 border-[#C75A5A]/40 text-[#C75A5A]'
+              }`}>
+              {connected ? 'CONNECTED' : 'OFFLINE'}
+            </div>
           </div>
         </div>
       </header>
@@ -132,7 +150,7 @@ export default function ATHENA() {
       <div className="px-4 py-4 md:px-6 md:py-6">
         <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[2fr,1fr] gap-4 md:gap-6">
           {/* 3D SCENE - hero */}
-          <div className="glass-card rounded-card overflow-hidden h-[460px] md:h-[560px] athena-canvas-bg relative">
+          <div className="glass-card corner-accents hero-sheen rounded-card overflow-hidden h-[460px] md:h-[560px] athena-canvas-bg relative">
             {/* Top overlay row */}
             <div className="absolute top-3 left-4 right-4 z-10 flex items-start justify-between pointer-events-none">
               <div className="flex flex-col">
@@ -246,12 +264,12 @@ export default function ATHENA() {
             { label: 'Token Usage', value: (state.token_usage || 0).toLocaleString(), icon: Target },
             { label: 'Task Timer', value: timerDisplay, icon: Activity },
           ].map((m, i) => (
-            <div key={i} className="glass-card rounded-card p-4">
+            <div key={i} className="stat-card glass-card rounded-card p-4">
               <div className="flex items-center gap-2 text-[10px] font-mono tracking-[2px] text-deep-blue/50 uppercase">
                 <m.icon className="w-3.5 h-3.5" />
                 {m.label}
               </div>
-              <div className="mt-2 font-body font-bold text-2xl text-deep-blue truncate">{m.value}</div>
+              <div className="mt-2 font-display font-semibold text-[28px] leading-tight text-deep-blue truncate">{m.value}</div>
             </div>
           ))}
         </div>
@@ -385,9 +403,14 @@ export default function ATHENA() {
       </div>
 
       {/* FOOTER */}
-      <footer className="mt-auto px-6 py-4 border-t border-deep-blue/10 text-center">
-        <div className="text-[11px] font-mono tracking-[2px] text-deep-blue/40">
-          ATHENA · OPERATING SYSTEM FOR AUTONOMOUS AGENTS
+      <footer className="mt-auto px-6 py-5 border-t border-deep-blue/10">
+        <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
+          <div className="text-[11px] font-mono tracking-[3px] text-deep-blue/45 uppercase">
+            ATHENA · Operating System for Autonomous Agents
+          </div>
+          <div className="text-[10px] font-mono tracking-[3px] text-deep-blue/35 uppercase">
+            Local-first · Multi-Provider · Self-Improving
+          </div>
         </div>
       </footer>
     </div>

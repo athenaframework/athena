@@ -1,0 +1,73 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "athena-mcp"
+version = "1.0.0"
+description = "ATHENA autonomous multi-agent coding system — MCP server"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["mcp", "ai", "agent", "coding", "autonomous"]
+
+dependencies = [
+    "mcp>=1.0.0",
+    "rich>=13.0.0",
+    "pyyaml>=6.0",
+    "pydantic>=2.0.0",
+    "openai>=1.0.0",
+    "ollama>=0.1.0",
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.29.0",
+    "gitpython>=3.1.0",
+    "duckduckgo-search>=6.0",
+    "python-dotenv>=1.0.0",
+    "pytest>=8.0.0",
+]
+
+[project.optional-dependencies]
+memory = ["chromadb>=0.5.0"]
+bot = [
+    "python-telegram-bot>=20.0",
+    "discord.py>=2.3.0",
+    "pywhatkit>=5.4",
+]
+all = ["athena-mcp[memory,bot]"]
+
+[project.scripts]
+athena-mcp = "athena_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["athena_mcp", "agents", "core", "hermes", "interfaces"]
+exclude = [
+    "hermes/chroma_db",
+    "hermes/skills",
+    "hermes/soul.md",
+    "hermes/memory.db",
+    "hermes/hermes.log",
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "athena_mcp/",
+    "agents/",
+    "core/",
+    "hermes/",
+    "interfaces/",
+    "config.yaml",
+    "requirements.txt",
+    "pyproject.toml",
+    "README.md",
+]
+exclude = [
+    ".venv/",
+    "venv/",
+    "dashboard/node_modules/",
+    "__pycache__/",
+    "*.pyc",
+    "hermes/memory.db",
+    "hermes/chroma_db/",
+    "logs/",
+    "ATHENA/",
+]

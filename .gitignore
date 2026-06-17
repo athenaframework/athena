@@ -60,3 +60,20 @@ landing/dist/
 # OS
 .DS_Store
 Thumbs.db
+
+# ATHENA runtime (auto-generated)
+ATHENA/
+demo.webm
+demo_output/
+debug_*.png
+HELLO_PAGE.md
+TASK_NOTES.md
+check_3d.mjs
+screenshot_canvas.mjs
+index.html
+
+# Dashboard build artifacts
+dashboard/tsconfig.node.tsbuildinfo
+dashboard/tsconfig.tsbuildinfo
+dashboard/vite.config.d.ts
+dashboard/vite.config.js
